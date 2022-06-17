@@ -37,6 +37,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <include file="$(find grizzly_control)/launch/control.launch" />
 
+    <!-- added code for joy teleop -->
+    <include file="$(find grizzly_control)/launch/teleop.launch"/>
+    <!-- added code for joy teleop -->
+
+    <!-- code added if Veleodyne VLP16 lidar enabled-->
+    <group if="$(optenv GRIZZLY_HDL32_ENABLED 0)">
+      <include file="$(find grizzly_navigation)/launch/vlp16_pointcloud_to_laserscan.launch" />
+    </group>
+    <!-- code added if Veleodyne VLP16 lidar enabled-->
+
     <!-- Spawn robot in gazebo -->
     <node name="spawn_grizzly_model" pkg="gazebo_ros" type="spawn_model"
         args="-x $(arg x)
